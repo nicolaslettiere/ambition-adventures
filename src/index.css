@@ -8,33 +8,65 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* RPG Fantasy Theme - Light Mode */
+    --background: 251 91% 95%;
+    --foreground: 270 15% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 270 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 270 15% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Mystical Purple */
+    --primary: 270 91% 65%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 270 100% 80%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Royal Gold */
+    --secondary: 45 93% 58%;
+    --secondary-foreground: 270 15% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted - Soft Lavender */
+    --muted: 270 60% 96%;
+    --muted-foreground: 270 15% 40%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Enchanted Blue */
+    --accent: 230 89% 65%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 270 30% 88%;
+    --input: 270 30% 88%;
+    --ring: 270 91% 65%;
+
+    /* Experience Colors */
+    --experience: 120 61% 50%;
+    --experience-bg: 120 61% 95%;
+    
+    /* Level Colors */
+    --level-bronze: 30 100% 60%;
+    --level-silver: 210 20% 70%;
+    --level-gold: 45 93% 58%;
+    --level-platinum: 280 60% 80%;
+    
+    /* RPG Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(270 91% 65%), hsl(270 100% 80%));
+    --gradient-secondary: linear-gradient(135deg, hsl(45 93% 58%), hsl(45 100% 70%));
+    --gradient-experience: linear-gradient(90deg, hsl(120 61% 50%), hsl(140 61% 60%));
+    --gradient-magical: linear-gradient(135deg, hsl(270 91% 65%), hsl(230 89% 65%));
+    --gradient-royal: linear-gradient(135deg, hsl(45 93% 58%), hsl(30 100% 60%));
+    
+    /* Shadows */
+    --shadow-mystical: 0 10px 30px -10px hsl(270 91% 65% / 0.3);
+    --shadow-glow: 0 0 30px hsl(270 100% 80% / 0.4);
+    --shadow-level-up: 0 0 50px hsl(45 93% 58% / 0.6);
+    
+    /* Animations */
+    --transition-magical: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 
@@ -101,5 +133,77 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* RPG Experience Bar */
+  .experience-bar {
+    @apply relative h-3 bg-muted rounded-full overflow-hidden border border-border/50;
+  }
+  
+  .experience-fill {
+    @apply h-full rounded-full transition-all duration-1000 ease-out;
+    background: var(--gradient-experience);
+    box-shadow: 0 0 10px hsl(var(--experience) / 0.5);
+  }
+  
+  /* Level Badge */
+  .level-badge {
+    @apply inline-flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold;
+    background: var(--gradient-secondary);
+    box-shadow: var(--shadow-mystical);
+    color: hsl(var(--secondary-foreground));
+  }
+  
+  /* Objective Card */
+  .objective-card {
+    @apply p-6 rounded-xl border border-border/50 transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--card)), hsl(var(--muted)));
+    box-shadow: var(--shadow-mystical);
+  }
+  
+  .objective-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Magical Button */
+  .btn-magical {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    background: var(--gradient-primary);
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-mystical);
+  }
+  
+  .btn-magical:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Level Up Animation */
+  .level-up-glow {
+    animation: levelUpGlow 2s ease-out;
+  }
+  
+  /* Pulse Animation for Completed Tasks */
+  .task-completed {
+    animation: taskCompleted 0.6s ease-out;
+  }
+}
+
+@layer utilities {
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-secondary {
+    background: var(--gradient-secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
