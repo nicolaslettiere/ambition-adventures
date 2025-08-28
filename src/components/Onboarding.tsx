@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ThemeToggle } from './ThemeToggle';
 import { OBJECTIVE_TEMPLATES } from '@/types/rpg';
 
 interface OnboardingProps {
@@ -26,6 +27,11 @@ export const Onboarding = ({ onComplete }: OnboardingProps) => {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-background via-muted to-background">
+      {/* Theme Toggle */}
+      <div className="fixed top-4 right-4 z-10">
+        <ThemeToggle />
+      </div>
+
       <div className="w-full max-w-4xl space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">

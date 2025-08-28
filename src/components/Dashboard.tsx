@@ -1,5 +1,6 @@
 import { GameState } from '@/types/rpg';
 import { ObjectiveCard } from './ObjectiveCard';
+import { ThemeToggle } from './ThemeToggle';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Trophy, Target, Flame, Clock, Plus } from 'lucide-react';
@@ -35,6 +36,11 @@ export const Dashboard = ({ gameState, onCompleteObjective, onAddObjective }: Da
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted to-background p-4">
       <div className="max-w-7xl mx-auto space-y-6">
+        {/* Header with Theme Toggle */}
+        <div className="flex justify-end p-4">
+          <ThemeToggle />
+        </div>
+
         {/* Header */}
         <div className="text-center space-y-4 py-8">
           <h1 className="text-3xl md:text-5xl font-bold text-gradient-primary">
